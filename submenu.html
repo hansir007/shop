@@ -57,13 +57,44 @@
 				plus.storage.setItem( "menuType", '1');
 				clicked('menu.html');
 			}
+			function pandian(){
+				plus.storage.setItem( "menuType", '2');
+				clicked('menu.html');
+			}
 			function jingli(){
-				$("#jingli").show();
-				$("#bijia").hide();
+				var str = '<table width="100%" class="jiu">';
+				str += '<tr><td>';
+				str += '<a href="#" onclick="clicked(\'baobiao/xiaoshou.html\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">实时销售</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">实时库存</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">负库存排名</div></a>';
+	            str += '</td></tr><tr><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">负毛利排名</div></a>';
+	            str += '</td></tr></table>';
+				$("#content").html(str);
 			}
 			function bijia(){
-				$("#jingli").hide();
-				$("#bijia").show();
+				var str = '<table width="100%" class="jiu">';
+				str += '<tr><td>';
+				str += '<a href="#" onclick="clicked(\'baobiao/xiaoshou.html\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">二维码扫描</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">条码扫描</div></a>';
+	            str += '</td><td width="33%">&nbsp;';
+	            str += '</td></tr></table>';
+				$("#content").html(str);
 			}
 		</script>
 	</head>
@@ -74,55 +105,13 @@
 		    <div class="nvtt">零售宝</div>
 		</header>
 		<div id="content" class="content">
-			<table width="100%" class="jiu" id="jingli">
-				<tr>
-					<td>
-						<a href="#" onclick="clicked('baobiao/xiaoshou.html')">
-	                    <span class="mui-icon mui-icon-email"></span>
-	                    <div class="mui-media-body">实时销售</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">实时库存</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">负库存排名</div></a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">负毛利排名</div></a>
-					</td>
-				</tr>
-			</table>
-        	<table width="100%" class="jiu" id="bijia">
-				<tr>
-					<td>
-						<a href="baobiao/xiaoshou.html">
-	                    <span class="mui-icon mui-icon-email"></span>
-	                    <div class="mui-media-body">条码扫描</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">二维码扫描</div></a>
-					</td>
-					<td width="30%">
-						
-					</td>
-				</tr>
-			</table>
+			
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
 			    报表
 			</a>
-			<a id="type2" class="mui-tab-item" href="#">
+			<a id="type2" class="mui-tab-item" href="#" onclick="pandian()">
 			    盘点
 			</a>
 			<a class="mui-tab-item" href="#">

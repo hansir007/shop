@@ -47,13 +47,51 @@
 				}
 			}
 			function baobiao(){
-				$("#baobiao").show();
-				$("#pandian").hide();
+				var str = '<table width="100%" class="jiu">';
+				str += '<tr><td>';
+				str += '<a href="#" onclick="clicked(\'submenu.html?type=1\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">经理查询</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">实时库存</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">销售查询</div></a>';
+	            str += '</td></tr><tr><td>';
+	            str += '<a href="#" onclick="clicked(\'submenu.html?type=2\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">询价比价</div></a>';
+	            str += '</td></tr></table>';
+				$("#content").html(str);
 				plus.storage.setItem( "menuType", '1');
 			}
 			function pandian(){
-				$("#baobiao").hide();
-				$("#pandian").show();
+				var str = '<table width="100%" class="jiu">';
+				str += '<tr><td>';
+				str += '<a href="#" onclick="clicked(\'submenu.html?type=1\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">盘点业务</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">盘点查询</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">错漏数据</div></a>';
+	            str += '</td></tr><tr><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">盘点损益</div></a>';
+	             str += '</td><td>';
+	            str += '<a href="javascript:alert(\'我们正在努力哦\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">历史查询</div></a>';
+	            str += '</td></tr></table>';
+				$("#content").html(str);
 				plus.storage.setItem( "menuType", '2');
 			}
 		</script>
@@ -65,97 +103,7 @@
 			<div class="nvtt">零售宝</div>
 		</header>
 		<div id="content" class="content">
-			<table width="100%" class="jiu" id="baobiao">
-				<tr>
-					<td>
-						<a href="#" onclick="clicked('submenu.html?type=1')">
-	                    <span class="mui-icon mui-icon-location"></span>
-	                    <div class="mui-media-body">经理查询</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">实时库存</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">销售查询</div></a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">询价比价</div></a>
-					</td>
-				</tr>
-			</table>
-			<table width="100%" class="jiu" id="pandian">
-				<tr>
-					<td>
-						<a href="submenu.html?type=1">
-	                    <span class="mui-icon mui-icon-location"></span>
-	                    <div class="mui-media-body">盘点业务</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">盘点查询</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">错漏数据</div></a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">盘点损益</div></a>
-					</td>
-					<td>
-						<a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">历史盘点</div></a>
-					</td>
-				</tr>
-			</table>
-			<!--<ul class="mui-table-view mui-grid-view mui-grid-9" id="baobiao">
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="submenu.html?type=1">
-	                    <span class="mui-icon mui-icon-location"></span>
-	                    <div class="mui-media-body">经理查询</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">实时库存</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-email"></span>
-	                    <div class="mui-media-body">销售查询</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">询价比价</div></a></li>	            
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:alert('我们正在努力哦')">
-                    <span class="mui-icon mui-icon-search"></span>
-                    <div class="mui-media-body">Search</div></a></li>
-        	</ul> 
-        	<ul class="mui-table-view mui-grid-view mui-grid-9" id="pandian">
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">盘点业务</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-	                    <span class="mui-icon mui-icon-email"></span>
-	                    <div class="mui-media-body">盘点查询</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">错漏数据</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="submenu.html?type=1">
-	                    <span class="mui-icon mui-icon-location"></span>
-	                    <div class="mui-media-body">盘点损益</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-                    <span class="mui-icon mui-icon-search"></span>
-                    <div class="mui-media-body">历史盘点</div></a></li>
-        	</ul> -->
+			
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
