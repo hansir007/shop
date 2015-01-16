@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售现场宝</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript">
+			function myclear(){
+				$("#tiaoma").html("");
+				$("#name").html("");
+				$("#danwei").html("");
+				$("#shuliang").val("");
+			};
+			var img = null;
+			var blist = [];
+			function scaned(t, r, f) {
+				/*var d = new Date();
+				var h=d.getHours(),m=d.getMinutes(),s=d.getSeconds(),ms=d.getMilliseconds();
+				if ( h < 10 ) { h='0'+h; }
+				if ( m < 10 ) { m='0'+m; }
+				if ( s < 10 ) { s='0'+s; }
+				if ( ms < 10 ) { ms='00'+ms; } else if ( ms < 100 ) { ms='0'+ms; }
+				var ts = '['+h+':'+m+':'+s+'.'+ms+']';
+				var li=null,hl = document.getElementById("history");
+				if ( blist.length > 0 ) {
+					li = document.createElement("li");
+					li.className = "ditem";
+					hl.insertBefore( li, hl.childNodes[0] );
+				} else {
+					li = document.getElementById("nohistory");
+				}
+				li.id = blist.length;
+				var html = '['+h+':'+m+':'+s+'.'+ms+']'+'　　'+t+'码<div class="hdata">';
+				html += r;
+				html += '</div>';
+				li.innerHTML = html;
+				li.setAttribute( "onclick", "selected(id);" );
+				blist[blist.length] = {type:t,result:r,file:f};
+				update( t, r, f );*/
+				//location.href = r;
+				var str = '<table class="mtable" align="center">';
+	        	str += '<tr class="mtr">';
+	        	str += '<td>门店</td>';
+	        	str += '<td>编码</td>';
+	        	str += '<td>进价</td>';
+	        	str += '<td>售价</td>';
+	        	str += '</tr>';
+	        	str += '<tr class="mtr1">';
+	        	str += '<td>那日松</td>';
+	        	str += '<td>100001</td>';
+	        	str += '<td>10</td>';
+	        	str += '<td>15</td>';
+	        	str += '</tr>';
+	        	str += '<tr class="mtr1">';
+	        	str += '<td>铁西</td>';
+	        	str += '<td>102311</td>';
+	        	str += '<td>11</td>';
+	        	str += '<td>17</td>';
+	        	str += '</tr>';
+	        	str += '</table>';
+	        	$("#mylist").html(str);
+			}
+
+			function selected(id) {
+				var h = blist[id];
+				update(h.type, h.result, h.file);
+				if (h.result.indexOf("http://") == 0 || h.result.indexOf("https://") == 0) {
+					plus.nativeUI.confirm(h.result, function(i) {
+						if (i.index == 0) {
+							plus.runtime.openURL(h.result);
+						}
+					}, "", ["打开", "取消"]);
+				} else {
+					plus.nativeUI.alert(h.result);
+				}
+			}
+
+			function update(t, r, f) {
+				outSet("扫描成功：");
+				outLine(t);
+				outLine(r);
+				outLine("<br/>图片地址：" + f);
+				if (!f || f == "null") {
+					img.src = "img/barcode.png";
+				} else {
+					plus.io.resolveLocalFileSystemURL(f, function(entry) {
+						img.src = entry.toLocalURL();
+					});
+					//img.src = "http://localhost:13131/"+f;
+				}
+			}
+
+			function onempty() {
+				if (window.plus) {
+					plus.nativeUI.alert('无扫描记录');
+				} else {
+					alert('无扫描记录');
+				}
+			}
+
+			function showPrompt() {
+				//outSet("弹出系统输入对话框：");
+				var bts = ["确认", "取消"];
+				plus.nativeUI.prompt("请输入商品条码", function(e) {
+					var i = e.index;
+					//outLine("按\"" + ((i >= 0) ? bts[e.index] : "返回") + "\"关闭：" + e.value);
+					var str = '<table class="mtable" align="center">';
+		        	str += '<tr class="mtr">';
+		        	str += '<td>门店</td>';
+		        	str += '<td>编码</td>';
+		        	str += '<td>进价</td>';
+		        	str += '<td>售价</td>';
+		        	str += '</tr>';
+		        	str += '<tr class="mtr1">';
+		        	str += '<td>那日松</td>';
+		        	str += '<td>100001</td>';
+		        	str += '<td>10</td>';
+		        	str += '<td>15</td>';
+		        	str += '</tr>';
+		        	str += '<tr class="mtr1">';
+		        	str += '<td>铁西</td>';
+		        	str += '<td>102311</td>';
+		        	str += '<td>11</td>';
+		        	str += '<td>17</td>';
+		        	str += '</tr>';
+		        	str += '</table>';
+		        	$("#mylist").html(str);
+				}, "商品条码", "商品条码", bts);
+			}
+						
+		</script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style type="text/css">
+			.button {
+				background-color: #2AA2DF;
+				border: 1px solid #2AA2DF;
+			}
+			.mtable{
+				margin-top: 5px;
+				width: 96%;
+				background-color: #103E5C;
+			}
+			.mtr td{
+				text-align: center;
+				color: white;
+			}
+			.mtr1{
+				background-color: #FFFFFF;
+			}
+			td{
+				text-align: center;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body onload="myclear()">
+		<header>
+			<div class="nvbt iback" onclick="back();"></div>
+			<div class="nvtt">询价比价</div>
+			<!--<div class="nvbt idoc" onclick="openDoc('NativeUI Document','/doc/nativeUI.html')"></div>-->
+		</header>
+		<div id="dcontent" class="dcontent">
+			<div class="button" onclick="clicked('barcode_scan.html',true,true);">扫描二维码/条码</div>
+			<div class="button" onclick="showPrompt();">手动输码</div>
+			<div id="mylist">
+				<!--<table class="mtable" align="center">
+	        		<tr class="mtr">
+	        			<td>门店</td>
+	        			<td>编码</td>
+	        			<td>进价</td>
+	        			<td>售价</td>
+	        		</tr>
+	        		<tr class="mtr1" onclick="clicked('xiaoshou_shop.html')">
+	        			<td>那日松</td>
+	        			<td>100001</td>
+	        			<td>10</td>
+	        			<td>15</td>
+	        		</tr>
+	        		<tr class="mtr1" onclick="clicked('xiaoshou_shop.html')">
+	        			<td>铁西</td>
+	        			<td>102311</td>
+	        			<td>11</td>
+	        			<td>17</td>
+	        		</tr>
+	        	</table>-->
+			</div>
+			<!--<table style="width:100%;">
+				<tbody>
+					<tr>
+						<td style="width:25%"><div class="button button-select" onclick="setItemFun()">保存</div></td>
+						<td style="width:25%"><div class="button button-select" onclick="myclear()">取消</div></td>
+						<td style="width:40%"><div class="button button-select" onclick="clicked('checkDB.html')">查看历史</div></td>
+					</tr>
+				</tbody>
+			</table>-->
+		</div>
+	</body>
+
+</html>
