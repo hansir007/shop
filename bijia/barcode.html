@@ -9,13 +9,9 @@
 		<title>商业零售现场宝</title>
 		<script type="text/javascript" src="../js/common.js"></script>
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<script type="text/javascript">
-			function myclear(){
-				$("#tiaoma").html("");
-				$("#name").html("");
-				$("#danwei").html("");
-				$("#shuliang").val("");
-			};
 			var img = null;
 			var blist = [];
 			function scaned(t, r, f) {
@@ -132,7 +128,24 @@
 		        	$("#mylist").html(str);
 				}, "商品条码", "商品条码", bts);
 			}
-						
+			mui.init();
+			window.onload = function(){
+				setTimeout(myload, 500);
+			}
+			function myload(){
+				var menuType = plus.storage.getItem("menuType");
+				if(menuType == '1'){
+					$("#type1").addClass("mui-active");
+				}
+			}
+			function baobiao(){
+				plus.storage.setItem( "menuType", '1');
+				clicked('../menu.html');
+			}
+			function pandian(){
+				plus.storage.setItem( "menuType", '2');
+				clicked('../menu.html');
+			}	
 		</script>
 		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 		<link rel="stylesheet" href="../css/mui.min.css">
@@ -160,7 +173,7 @@
 		</style>
 	</head>
 
-	<body onload="myclear()">
+	<body>
 		<header>
 			<div class="nvbt iback" onclick="back();"></div>
 			<div class="nvtt">询价比价</div>
@@ -200,6 +213,48 @@
 					</tr>
 				</tbody>
 			</table>-->
+			<nav class="mui-bar mui-bar-tab">
+			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
+			    报表
+			</a>
+			<a id="type2" class="mui-tab-item" href="#" onclick="pandian()">
+			    盘点
+			</a>
+			<a class="mui-tab-item" href="#">
+			    商盟
+			 </a>
+			 <a class="mui-tab-item" href="#">
+			    快付
+			 </a>
+			 <a class="mui-tab-item" href="#picture">
+			    <span class="mui-icon mui-icon-more"></span>
+			 </a>
+		</nav>
+		
+		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell">
+					<a href="#">快付</a>
+				</li>-->
+				<li class="mui-table-view-cell">
+					<a href="#">会员</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">微信</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">供应商</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">云</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
 		</div>
 	</body>
 
