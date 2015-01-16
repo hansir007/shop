@@ -16,56 +16,113 @@
 		<script src="js/app.js"></script>
 		<style type="text/css">
 			html,body {
-				background-color: #EFEFF4;
+				background-color: #FFFFFF;
 			}
-			/*header.mui-bar{
-				display: none;
-			}
-			.mui-bar-nav~.mui-content{
-				padding: 0;
-			}*/
-			.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+			td{
 				font-size: 12px;
+				padding: 10px 0 10px 0;
+			}
+			td a{
+				color: #103E5C;
+			}
+			.jiu{
+				margin: 15px 0 0 0;
 			}
 		</style>
 		<script>
 			mui.init();
-			$(document).ready(function(){
+			window.onload = function(){
+				setTimeout(myload, 500);
+			}
+			function myload(){
 				$("#baobiao").hide();
 				$("#pandian").hide();
-				if(sessionStorage.type == 1){
+				var menuType = plus.storage.getItem("menuType");
+				if(menuType == '1'){
 					$("#type1").addClass("mui-active");
 					baobiao();
-				}else if(sessionStorage.type == 2){
+				}else if(menuType == '2'){
 					$("#type2").addClass("mui-active");
 					pandian();
 				}
-			})
+			}
 			function baobiao(){
 				$("#baobiao").show();
 				$("#pandian").hide();
-				sessionStorage.type = 1;
+				plus.storage.setItem( "menuType", '1');
 			}
 			function pandian(){
 				$("#baobiao").hide();
 				$("#pandian").show();
-				sessionStorage.type = 2;
+				plus.storage.setItem( "menuType", '2');
 			}
 		</script>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-		    
-		    <h1 class="mui-title">零售宝</h1>
-		</header>
-		<!--<header>
-			<div class="nvbt iback" onclick="back();"></div>
+		<header>
+			<div style="width:15%;height:100%;float:left;"></div>
 			<div class="nvtt">零售宝</div>
-			<div style="width:15%;height:100%;float:right;"></div>
-		</header>-->
-		<div class="mui-content">
-			<ul class="mui-table-view mui-grid-view mui-grid-9" id="baobiao">
+		</header>
+		<div id="content" class="content">
+			<table width="100%" class="jiu" id="baobiao">
+				<tr>
+					<td>
+						<a href="#" onclick="clicked('submenu.html?type=1')">
+	                    <span class="mui-icon mui-icon-location"></span>
+	                    <div class="mui-media-body">经理查询</div></a>
+					</td>
+					<td>
+						<a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">实时库存</div></a>
+					</td>
+					<td>
+						<a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">销售查询</div></a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="submenu.html?type=2">
+	                    <span class="mui-icon mui-icon-search"></span>
+	                    <div class="mui-media-body">询价比价</div></a>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" class="jiu" id="pandian">
+				<tr>
+					<td>
+						<a href="submenu.html?type=1">
+	                    <span class="mui-icon mui-icon-location"></span>
+	                    <div class="mui-media-body">盘点业务</div></a>
+					</td>
+					<td>
+						<a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">盘点查询</div></a>
+					</td>
+					<td>
+						<a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">错漏数据</div></a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="submenu.html?type=2">
+	                    <span class="mui-icon mui-icon-search"></span>
+	                    <div class="mui-media-body">盘点损益</div></a>
+					</td>
+					<td>
+						<a href="submenu.html?type=2">
+	                    <span class="mui-icon mui-icon-search"></span>
+	                    <div class="mui-media-body">历史盘点</div></a>
+					</td>
+				</tr>
+			</table>
+			<!--<ul class="mui-table-view mui-grid-view mui-grid-9" id="baobiao">
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="submenu.html?type=1">
 	                    <span class="mui-icon mui-icon-location"></span>
 	                    <div class="mui-media-body">经理查询</div></a></li>
@@ -98,7 +155,7 @@
 	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <span class="mui-icon mui-icon-search"></span>
                     <div class="mui-media-body">历史盘点</div></a></li>
-        	</ul> 
+        	</ul> -->
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">

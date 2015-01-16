@@ -30,7 +30,7 @@ header {
 	font-size: 20px;
 	text-align: center;
 	line-height: 44px;
-	background: #fff;
+	background: #17AFEE;
 	z-index: 9999;
 	-webkit-box-shadow: 0px 1px 6px #CCC;
 	box-shadow: 0px 1px 6px #CCC;
@@ -44,8 +44,17 @@ header {
 	text-overflow:ellipsis;
 	white-space:nowrap;
 }
+.nvright {
+	width:15%;
+	height:100%;
+	float:right;
+	color: #FFFFFF;
+}
+.nvright a {
+	color: #FFFFFF;
+}
 .nvbt:active {
-	background: #f4f4f4;
+	background: #17AFEE;
 }
 .nvtt {
 	width: 70%;
@@ -54,6 +63,7 @@ header {
 	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
+	color: #FFFFFF;
 }
 .content {
 	text-align: center;

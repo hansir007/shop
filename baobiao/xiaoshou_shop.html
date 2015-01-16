@@ -8,25 +8,31 @@
 		<meta name="HandheldFriendly" content="true" />
 		<meta name="MobileOptimized" content="320" />
 		<title>零售宝</title>
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
-		<link rel="stylesheet" href="css/mui.min.css">
-		<script src="js/mui.min.js"></script>
-		<script src="js/app.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<style type="text/css">
 			html,body {
+				background-color: #EFEFF4;
+			}
+			.mtable{
+				margin-top: 5px;
+				width: 100%;
+				background-color: #103E5C;
+			}
+			.mtr td{
+				text-align: center;
+				color: white;
+			}
+			.mtr1{
 				background-color: #FFFFFF;
 			}
-			.jiu{
-				margin: 15px 0 0 0;
-			}
 			td{
+				text-align: center;
 				font-size: 12px;
-				padding: 10px 0 10px 0;
-			}
-			td a{
-				color: #103E5C;
 			}
 		</style>
 		<script>
@@ -42,81 +48,56 @@
 				setTimeout(myload, 500);
 			}
 			function myload(){
-				var type = Request.QueryString("type");
 				var menuType = plus.storage.getItem("menuType");
 				if(menuType == '1'){
 					$("#type1").addClass("mui-active");
-					if(type == 1){
-						jingli();
-					}else if(type == 2){
-						bijia();
-					}
 				}
 			}
 			function baobiao(){
 				plus.storage.setItem( "menuType", '1');
-				clicked('menu.html');
+				clicked('../menu.html');
 			}
-			function jingli(){
-				$("#jingli").show();
-				$("#bijia").hide();
-			}
-			function bijia(){
-				$("#jingli").hide();
-				$("#bijia").show();
-			}
+			
 		</script>
 	</head>
 
 	<body>
 		<header>
 		    <div class="nvbt iback" onclick="back();"></div>
-		    <div class="nvtt">零售宝</div>
+		    <div class="nvtt">XX门店实时销售</div>
+		    <div class="nvright"><a href="#" class="mui-icon mui-icon-bars" onclick="clicked('tubiao.html')"></a></div>
 		</header>
 		<div id="content" class="content">
-			<table width="100%" class="jiu" id="jingli">
-				<tr>
-					<td>
-						<a href="#" onclick="clicked('baobiao/xiaoshou.html')">
-	                    <span class="mui-icon mui-icon-email"></span>
-	                    <div class="mui-media-body">实时销售</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">实时库存</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">负库存排名</div></a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="submenu.html?type=2">
-	                    <span class="mui-icon mui-icon-search"></span>
-	                    <div class="mui-media-body">负毛利排名</div></a>
-					</td>
-				</tr>
-			</table>
-        	<table width="100%" class="jiu" id="bijia">
-				<tr>
-					<td>
-						<a href="baobiao/xiaoshou.html">
-	                    <span class="mui-icon mui-icon-email"></span>
-	                    <div class="mui-media-body">条码扫描</div></a>
-					</td>
-					<td>
-						<a href="javascript:alert('我们正在努力哦')">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">二维码扫描</div></a>
-					</td>
-					<td width="30%">
-						
-					</td>
-				</tr>
-			</table>
+        	<table class="mtable">
+        		<tr class="mtr">
+        			<td>部门</td>
+        			<td>数量</td>
+        			<td>收入</td>
+        			<td>成本</td>
+        			<td>毛利</td>
+        		</tr>
+        		<tr class="mtr1">
+        			<td>食品</td>
+        			<td>3456</td>
+        			<td>126790</td>
+        			<td>98650</td>
+        			<td>27800</td>
+        		</tr>
+        		<tr class="mtr1">
+        			<td>生鲜</td>
+        			<td>9784</td>
+        			<td>436781</td>
+        			<td>300121</td>
+        			<td>134532</td>
+        		</tr>
+        		<tr class="mtr">
+        			<td>合计</td>
+        			<td>13412</td>
+        			<td>436781</td>
+        			<td>300121</td>
+        			<td>134532</td>
+        		</tr>
+        	</table>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
 			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
