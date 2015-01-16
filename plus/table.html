@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售现场宝</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+		</script>
+		<style type="text/css">
+			.button-select {
+				background-color: #2AA2DF;
+			}
+			.ditem {
+				text-align: left;
+			}
+			.ileft {
+				float: left;
+			}
+			.iright {
+				width: 80px;
+				float: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="nvbt iback" onclick="back();"></div>
+			<h1 class="mui-title">商业零售现场宝</h1>
+		</header>
+		<div class="mui-content">
+			<table style="width:100%;">
+				<tbody>
+					<tr>
+						<td style="width:45%">
+							<div class="button button-select" onclick="clicked('tubiao.html')">切换到图表模式</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="mui-card">				
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell">card（圆角列表）
+						<div id="M_Toggle" class="mui-switch mui-active">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">2014年创维电视销售数量</a>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell"><span class="ileft">1月</span><span class="iright">1200</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">2月</span><span class="iright">1300</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">3月</span><span class="iright">1400</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">4月</span><span class="iright">1500</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">5月</span><span class="iright">3000</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">6月</span><span class="iright">1900</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">7月</span><span class="iright">2000</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">8月</span><span class="iright">2100</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">9月</span><span class="iright">2500</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">10月</span><span class="iright">2700</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">11月</span><span class="iright">1400</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">12月</span><span class="iright">2600</span></li>
+						</ul>
+					</li>
+					<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">2014年康佳电视销售数量</a>
+						<ul class="mui-table-view mui-table-view-chevron">
+							<li class="mui-table-view-cell"><span class="ileft">1月</span><span class="iright">1600</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">2月</span><span class="iright">1200</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">3月</span><span class="iright">1200</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">4月</span><span class="iright">1600</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">5月</span><span class="iright">1800</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">6月</span><span class="iright">1200</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">7月</span><span class="iright">1600</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">8月</span><span class="iright">1900</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">9月</span><span class="iright">1100</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">10月</span><span class="iright">1000</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">11月</span><span class="iright">1600</span></li>
+							<li class="mui-table-view-cell"><span class="ileft">12月</span><span class="iright">2600</span></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			mui.init();
+		</script>
+	</body>
+
+</html>

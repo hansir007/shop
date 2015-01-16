@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售现场宝</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<script src="../js/RGraph.common.core.js"></script>
+		<script src="../js/RGraph.bar.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			function showMap() {
+				//绘制分组柱状图，指定数据
+				myGraph = new RGraph.Bar('myCanvas', [
+					[1200, 1600],
+					[1300, 1200],
+					[1400, 1200],
+					[1500, 1600],
+					[3000, 1800],
+					[1900, 1200],
+					[2000, 1600],
+					[2100, 1900],
+					[2500, 1100],
+					[2700, 1000],
+					[1400, 1600],
+					[2600, 1200]
+				]);
+				//指定统计图标题
+				myGraph.Set('chart.title', '2014年北国超市彩电销售图');
+				//指定X轴标题
+				myGraph.Set('chart.title.xaxis', '销售月份');
+				//指定Y轴标题
+				myGraph.Set('chart.title.yaxis', '销售台数');
+				//指定柱状图图例被绘制在图例区域中
+				myGraph.Set('chart.key.position', 'graph');
+				//指定图例文字    
+				myGraph.Set('chart.key', ['创维', '康佳']);
+				//指定柱子颜色
+				myGraph.Set('chart.colors', ['blue', 'green']);
+				//指定X轴的坐标轴文字
+				myGraph.Set('chart.labels', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
+				//指定Y轴的坐标轴文字
+				myGraph.Set('chart.ylabels.specific', ['3000', '2500', '2000', '1500', '1000', '500']);
+				//指定在坐标轴顶部绘制说明销售台数的文字
+				myGraph.Set('chart.labels.above', true);
+				//用文字说明销售量最少的柱子
+				//myGraph.Set('chart.labels.ingraph', [19, '销售最少']);
+				//指定网格自动与坐标轴单位对齐
+				myGraph.Set('chart.background.grid.autofit', true);
+				myGraph.Set('chart.background.grid.autofit.align', true);
+				//指定标签文字所使用的空间尺寸
+				myGraph.Set('chart.gutter', 65);
+				$("#myCanvas").width($(window).width()-10);
+				myGraph.Set('chart.width', $(window).width() - 20);
+				//绘制柱状图
+				myGraph.Draw();
+			}
+		</script>
+		<style type="text/css">
+			.button-select {
+				background-color: #2AA2DF;
+			}
+		</style>
+	</head>
+
+	<body onload="showMap()">
+		<header>
+			<div class="nvbt iback" onclick="back();"></div>
+			<div class="nvtt">商业零售现场宝</div>
+			<!--<div class="nvbt idoc" onclick="openDoc('NativeUI Document','/doc/nativeUI.html')"></div>-->
+		</header>
+		<div id="dcontent" class="dcontent">
+			<table style="width:100%;">
+				<tbody>
+					<tr>
+						<td style="width:45%">
+							<div class="button button-select" onclick="clicked('table.html')">切换到数据模式</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<canvas id="myCanvas" width="300" height="300">
+				[您的浏览器不支持canvas元素]
+			</canvas>
+		</div>
+	</body>
+
+</html>

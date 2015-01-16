@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="misapplication-tap-highlight" content="no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售掌中宝</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+		<script type="text/javascript" src="js/update.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//取消浏览器的所有事件，使得active的样式在手机上正常生效
+			document.addEventListener('touchstart',function(){
+			    return false;
+			},true);
+			// 禁止选择
+			document.oncontextmenu=function(){
+				return false;
+			};
+			// H5 plus事件处理
+			var as='slide-in-right',at=200;// 默认动画时间
+			function plusReady(){
+				// 隐藏滚动条
+				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+				// Android处理返回键
+				plus.key.addEventListener('backbutton',function(){
+					if(confirm('确认退出？')){
+						plus.runtime.quit();
+					}
+				},false);
+				compatibleAdjust();
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready',plusReady,false);
+			}
+			// DOMContentLoaded事件处理
+			var _domReady=false;
+			document.addEventListener('DOMContentLoaded',function(){
+				_domReady=true;
+				compatibleAdjust();
+			},false);
+			// 兼容性样式调整
+			var _adjust=false;
+			function compatibleAdjust(){
+				if(_adjust||!window.plus||!_domReady){
+					return;
+				}
+				_adjust=true;
+				// iOS平台使用div的滚动条
+				if('iOS'==plus.os.name){
+					as='pop-in';
+					at=300;
+					document.getElementById('content').className='scontent';
+				}
+				// 预创建二级窗口
+				preateWebviews();
+				// 关闭启动界面
+				setTimeout(function(){
+					plus.navigator.closeSplashscreen();
+				},500);
+			}
+			// 处理点击事件
+			var _openw=null;
+			function clicked(id){
+				if(_openw){return;}
+				_openw=preate[id];
+				if(_openw){
+					if(_openw.showded){
+						_openw.show(as,at);
+					}else{
+						_openw.show(as,at);
+						_openw.showded=true;
+					}
+					_openw=null;
+				}else{
+					var wa=plus.nativeUI.showWaiting();
+					_openw=plus.webview.create(id,id,{scrollIndicator:'none',scalable:false,popGesture:'hide'},{preate:true});
+					preate[id]=_openw;
+					_openw.addEventListener('loaded',function(){//叶面加载完成后才显示
+			//		setTimeout(function(){//延后显示可避免低端机上动画时白屏
+						wa.close();
+						_openw.show(as,at);
+						_openw.showded=true;
+						_openw=null;
+			//		},200);
+					},false);
+					_openw.addEventListener('close',function(){//页面关闭后可再次打开
+						_openw=null;
+						preate[id]&&(preate[id]=null);//兼容窗口的关闭
+					},false);
+				}
+			}
+			// 预创建二级页面
+			var preate={};
+			function preateWebviews(){
+				preateWebivew('plus/webview.html');
+				var plist=document.getElementById('plist').children;
+				// 由于启动是预创建过多Webview窗口会消耗较长的时间，所以这里限制仅创建5个
+				for( var i=0;i<plist.length&&i<2;i++){
+					var id=plist[i].id;
+					id&&(id.length>0)&&preateWebivew(id);
+				}
+			}
+			function preateWebivew(id){
+				if(!preate[id]){
+					var w=plus.webview.create(id,id,{scrollIndicator:'none',scalable:false,popGesture:'hide'},{preate:true});
+					preate[id]=w;
+					w.addEventListener('close',function(){//页面关闭后可再次打开
+						_openw=null;
+						preate[id]&&(preate[id]=null);//兼容窗口的关闭
+					},false);
+				}
+			}
+			// 清除预创建页面(仅)
+			function preateClear(){
+				for(var p in preate){
+					var w=preate[p];
+					if(w&&w.showded&&!w.isVisible()){
+						w.close();
+						preate[p]=null;
+					}
+				}
+			}
+		</script>
+		<style type="text/css">
+			.inputText {
+				border: none;
+				width: 100%;
+				height: 40px;
+				-webkit-user-select:text;
+				text-align:left;
+				padding:0 1em;
+				border: 0px;
+				border-radius: 0;
+				font-size:16px;
+				outline:none;
+			}
+			.ditem {
+				padding: 5px;
+			}
+			.button {
+				background-color: #2AA2DF;
+				border: 1px solid #2AA2DF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="width:100% ; height: 90px; background-color:#2AA2DF ;padding: 30px 0 0 0;text-align: left;">
+			<div style="color: white; font-family: '微软雅黑'; font-size: 26px; font-style: oblique;margin-left: 30px;">零售宝</div>
+			<div style="margin-left: 30px;font-size:12 ;">Commercial Retail Tools</div>
+		</div>
+		<div id="dcontent" class="dcontent">
+			<ul class="dlist">
+				<li class="ditem">
+					<input type="number" id="name" class="inputText" placeholder="工号" />
+				</li>
+				<li class="ditem">
+					<input type="text" id="pass" class="inputText" placeholder="******" />
+				</li>
+			</ul>
+			<div class="button" onclick="clicked('menu.html',true,true);">登&nbsp;&nbsp;录</div>
+			<div style=" width: 90%;font-size: 12px;text-align: right;"><span onclick="clicked('plus/reg.html',true,true)">注册</span></div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="misapplication-tap-highlight" content="no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>零售宝</title>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<style type="text/css">
+			html,body {
+				background-color: #EFEFF4;
+			}
+			header.mui-bar{
+				/*display: none;*/
+			}
+			/*.mui-bar-nav~.mui-content{
+				padding: 0;
+			}*/
+			.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+				font-size: 12px;
+			}
+		</style>
+		<script>
+			mui.init();
+			Request = {  
+	            QueryString : function(paramName){  
+	                var reg = new RegExp("[\?&]" + paramName + "=([^&]*)[&]?", "i");  
+	                var paramVal = window.location.search.match(reg);  
+	                return paramVal == null ? "" : paramVal[1];  
+	            }  
+	        }
+			$(function(){
+				var type = Request.QueryString("type");
+				if(sessionStorage.type == 1){
+					$("#type1").addClass("mui-active");
+					if(type == 1){
+						jingli();
+					}else if(type == 2){
+						bijia();
+					}
+				}
+				
+				
+			})
+			function baobiao(){
+				sessionStorage.type == 1;
+				location.href = 'menu.html';
+			}
+			function jingli(){
+				$("#jingli").show();
+				$("#bijia").hide();
+			}
+			function bijia(){
+				$("#jingli").hide();
+				$("#bijia").show();
+			}
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">零售宝</h1>
+		</header>
+		<div class="mui-content">
+        	<ul class="mui-table-view mui-grid-view mui-grid-9" id="jingli">
+        		<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-email"></span>
+	                    <div class="mui-media-body">实时销售</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">实时库存</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-search"></span>
+	                    <div class="mui-media-body">负库存排名</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="javascript:alert('我们正在努力哦')">
+	                    <span class="mui-icon mui-icon-location"></span>
+	                    <div class="mui-media-body">负毛利排名</div></a></li>
+        	</ul>
+        	<ul class="mui-table-view mui-grid-view mui-grid-9" id="bijia">
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">条码扫描</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-email"></span>
+	                    <div class="mui-media-body">二维码扫描</div></a></li>
+        	</ul>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
+			    报表
+			</a>
+			<a id="type2" class="mui-tab-item" href="#">
+			    盘点
+			</a>
+			<a class="mui-tab-item" href="#">
+			    商盟
+			 </a>
+			 <a class="mui-tab-item" href="#">
+			    快付
+			 </a>
+			 <a class="mui-tab-item" href="#picture">
+			    <span class="mui-icon mui-icon-more"></span>
+			 </a>
+		</nav>
+		
+		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell">
+					<a href="#">快付</a>
+				</li>-->
+				<li class="mui-table-view-cell">
+					<a href="#">会员</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">微信</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">供应商</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">云</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+</html>
