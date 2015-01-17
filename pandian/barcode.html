@@ -90,12 +90,15 @@
 				plus.nativeUI.prompt("请输入商品条码", function(e) {
 					var i = e.index;
 					//outLine("按\"" + ((i >= 0) ? bts[e.index] : "返回") + "\"关闭：" + e.value);
-					var str = '<li class="ditem">条码：<span id="tiaoma">'+e.value+'</span></li>';
-		        	str += '<li class="ditem">名称：<span id="name">舒蕾洗发露</span></li>';
-		        	str += '<li class="ditem">单位：<span id="danwei">瓶</span></li>';
-		        	str += '<li class="ditem">数量：<input type="number" id="shuliang" required ></li>';
-		        	$(".dlist").html(str);
-		        	$("#mybtn").show();
+					if(i == 0){
+						var str = '<li class="ditem">条码：<span id="tiaoma">'+e.value+'</span></li>';
+			        	str += '<li class="ditem">名称：<span id="name">舒蕾洗发露</span></li>';
+			        	str += '<li class="ditem">单位：<span id="danwei">瓶</span></li>';
+			        	str += '<li class="ditem">数量：<input type="number" id="shuliang" required ></li>';
+			        	$(".dlist").html(str);
+			        	$("#mybtn").show();
+					}
+					
 				}, "商品条码", "商品条码", bts);
 			}
 			function myclear(){

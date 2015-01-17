@@ -96,6 +96,25 @@
 				$("#content").html(str);
 				plus.storage.setItem( "menuType", '2');
 			}
+			
+			function shangmen(){
+				var str = '<table width="100%" class="jiu">';
+				str += '<tr><td>';
+				str += '<a href="#" onclick="clicked(\'pandian/index.html\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">顾客消费</div></a>';
+	            str += '</td><td>';
+	            str += '<a href="#" onclick="clicked(\'pandian/cuolou.html\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">查询对账</div></a>';
+	            str += '</td><td width="33%">';
+	            str += '<a href="#" onclick="clicked(\'pandian/cuolou.html\')">';
+	            str += '<span class="mui-icon mui-icon-home"></span>';
+	            str += '<div class="mui-media-body">查询对账</div></a>';
+	            str += '</td></tr></table>';
+				$("#content").html(str);
+				plus.storage.setItem( "menuType", '3');
+			}
 		</script>
 	</head>
 
@@ -108,13 +127,13 @@
 			
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
+			<a class="mui-tab-item" href="#" onclick="baobiao()">
 			    报表
 			</a>
-			<a id="type2" class="mui-tab-item" href="#" onclick="pandian()">
+			<a class="mui-tab-item" href="#" onclick="pandian()">
 			    盘点
 			</a>
-			<a class="mui-tab-item" href="#">
+			<a class="mui-tab-item" href="#" onclick="shangmen()">
 			    商盟
 			 </a>
 			 <a class="mui-tab-item" href="#">
