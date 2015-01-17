@@ -29,6 +29,15 @@
 					plus.nativeUI.toast(msg);
 				}
 			}
+			
+			function mystart(){
+				var type = $('input[name="style"]:checked').val();
+				if(type == 1){
+					
+				}else{
+					
+				}
+			}
 		</script>
 
 		<style type="text/css">
@@ -46,47 +55,24 @@
 			<!--<div class="nvbt idoc" onclick="openDoc('NativeUI Document','/doc/nativeUI.html')"></div>-->
 		</header>
 		<div id="dcontent" class="dcontent" style="text-align: left;">
-			<h5 class="mui-content-padded">盘点方式</h5>
+			<h5 class="mui-content-padded">方式</h5>
 			<div class="mui-card">
 				<form class="mui-input-group">
 					<div class="mui-input-row mui-radio">
-						<label>全部盘点</label>
-						<input name="pandiantype" type="radio" checked value="1" onclick="$('#pandianfanwei').hide();">
+						<label>错盘数据</label>
+						<input name="style" type="radio" checked value="1">
 					</div>
 					<div class="mui-input-row mui-radio">
-						<label>抽样盘点</label>
-						<input name="pandiantype" type="radio" value="2" onclick="$('#pandianfanwei').show();">
+						<label>漏盘数据</label>
+						<input name="style" type="radio" value="2">
 					</div>
 				</form>
-			</div>
-			<div id="pandianfanwei" style="display: none;">
-				<h5 class="mui-content-padded">盘点范围</h5>
-				<div class="mui-card">
-					<form class="mui-input-group">
-						<div class="mui-input-row mui-radio">
-							<label>柜组</label>
-							<input name="style" type="radio" checked value="">
-						</div>
-						<div class="mui-input-row mui-radio">
-							<label>类别</label>
-							<input name="style" type="radio" value="inverted">
-						</div>
-						<div class="mui-input-row mui-radio">
-							<label>供应商</label>
-							<input name="style" type="radio" value="inverted">
-						</div>
-					</form>
-				</div>
 			</div>
 			<div class="mui-card" style="margin-top: 5px;">
 				<form class="mui-input-group">
 					<div class="mui-input-row">
 						<label>盘点日</label>
 						<input type="text" placeholder="盘点日">
-					</div>
-					<div class="mui-input-row">
-						<label>ID</label>
-						<input type="text" class="mui-input-clear" placeholder="ID">
 					</div>
 					<div class="mui-input-row">
 						<label>柜组</label>
@@ -98,7 +84,7 @@
 				<tbody>
 					<tr>
 						<td style="width:25%">
-							<div class="button button-select" onclick="clicked('barcode.html')">开始</div>
+							<div class="button button-select" onclick="mystart()">开始</div>
 						</td>
 						<td style="width:25%">
 							<div class="button button-select" onclick="back()">放弃</div>
