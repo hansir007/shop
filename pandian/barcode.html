@@ -9,13 +9,9 @@
 		<title>商业零售现场宝</title>
 		<script type="text/javascript" src="../js/common.js"></script>
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<script type="text/javascript">
-			function myclear(){
-				$("#tiaoma").html("");
-				$("#name").html("");
-				$("#danwei").html("");
-				$("#shuliang").val("");
-			};
 			var img = null;
 			var blist = [];
 			function scaned(t, r, f) {
@@ -43,9 +39,12 @@
 				blist[blist.length] = {type:t,result:r,file:f};
 				update( t, r, f );*/
 				//location.href = r;
-				$("#tiaoma").html(1234567890);
-				$("#name").html("红苹果笔记本");
-				$("#danwei").html("本");
+				var str = '<li class="ditem">条码：<span id="tiaoma">1234567890123</span></li>';
+		        	str += '<li class="ditem">名称：<span id="name">舒蕾洗发露</span></li>';
+		        	str += '<li class="ditem">单位：<span id="danwei">瓶</span></li>';
+		        	str += '<li class="ditem">数量：<input type="number" id="shuliang" required ></li>';
+		        	$(".dlist").html(str);
+		        	$("#mybtn").show();
 			}
 
 			function selected(id) {
@@ -85,32 +84,24 @@
 				}
 			}
 
-			function cleanHistroy() {
-				if (blist.length > 0) {
-					var hl = document.getElementById("history");
-					hl.innerHTML = '<li id="nohistory" class="ditem" onclick="onempty();">无历史记录	</li>';
-				}
-				plus.io.resolveLocalFileSystemURL("_doc/barcode/", function(entry) {
-					entry.removeRecursively(function() {
-						// Success
-					}, function(e) {
-						//alert( "failed"+e.message );
-					});
-				});
-			}
-
 			function showPrompt() {
 				//outSet("弹出系统输入对话框：");
 				var bts = ["确认", "取消"];
 				plus.nativeUI.prompt("请输入商品条码", function(e) {
 					var i = e.index;
 					//outLine("按\"" + ((i >= 0) ? bts[e.index] : "返回") + "\"关闭：" + e.value);
-					$("#tiaoma").html(e.value);
-					$("#name").html("红苹果笔记本");
-					$("#danwei").html("本");
+					var str = '<li class="ditem">条码：<span id="tiaoma">'+e.value+'</span></li>';
+		        	str += '<li class="ditem">名称：<span id="name">舒蕾洗发露</span></li>';
+		        	str += '<li class="ditem">单位：<span id="danwei">瓶</span></li>';
+		        	str += '<li class="ditem">数量：<input type="number" id="shuliang" required ></li>';
+		        	$(".dlist").html(str);
+		        	$("#mybtn").show();
 				}, "商品条码", "商品条码", bts);
 			}
-			
+			function myclear(){
+				$(".dlist").html('');
+		        $("#mybtn").hide();
+			}
 			function setItemFun() {
 				var len = plus.storage.getLength()/4+1;
 				plus.storage.setItem( "key"+len, $("#tiaoma").html() );
@@ -128,25 +119,49 @@
 					plus.nativeUI.toast(msg);
 				}
 			}
-			
-			function getAllItem(){
-				outSet( "获取数据：" );
-				var itemLength = plus.storage.getLength();
-				for ( var i=0; i < itemLength; i++ ) {
-					var key = plus.storage.key(i);
-				  	var value = plus.storage.getItem(key);
-				  	outLine( "key:"+key+"-->value:"+value );
-				};
+			mui.init();
+			window.onload = function(){
+				setTimeout(myload, 500);
 			}
+			function myload(){
+				var menuType = plus.storage.getItem("menuType");
+				if(menuType == '1'){
+					$("#type1").addClass("mui-active");
+				}
+			}
+			function baobiao(){
+				plus.storage.setItem( "menuType", '1');
+				clicked('../menu.html');
+			}
+			function pandian(){
+				plus.storage.setItem( "menuType", '2');
+				clicked('../menu.html');
+			}	
 		</script>
 		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/mui.min.css">
 		<style type="text/css">
-			.ditem{
-				text-align: left;
-			}
 			.button {
 				background-color: #2AA2DF;
 				border: 1px solid #2AA2DF;
+			}
+			.mtable{
+				margin-top: 5px;
+				background-color: #103E5C;
+			}
+			.mtr td{
+				text-align: center;
+				color: white;
+			}
+			.mtr1{
+				background-color: #FFFFFF;
+			}
+			td{
+				text-align: center;
+				font-size: 12px;
+			}
+			.ditem{
+				text-align: left;
 			}
 			#shuliang {
 				border: none;
@@ -154,39 +169,97 @@
 				height: 20px;
 				-webkit-user-select:text;
 				text-align:left;
-				padding:0 1em;
+				padding:0;
 				border: 0px;
 				border-radius: 0;
 				font-size:16px;
 				outline:none;
 			}
+			input[type="color"], 
+			input[type="date"], 
+			input[type="datetime-local"], 
+			input[type="datetime"], 
+			input[type="email"], 
+			input[type="month"], 
+			input[type="number"], 
+			input[type="password"], 
+			input[type="search"], 
+			input[type="tel"], 
+			input[type="text"], 
+			input[type="time"], 
+			input[type="url"], 
+			input[type="week"], 
+			select, textarea {
+				margin-bottom: 0;
+			}
 		</style>
 	</head>
 
-	<body onload="myclear()">
+	<body>
 		<header>
 			<div class="nvbt iback" onclick="back();"></div>
-			<div class="nvtt">零售宝</div>
-			<!--<div class="nvbt idoc" onclick="openDoc('NativeUI Document','/doc/nativeUI.html')"></div>-->
+			<div class="nvtt">移动盘点</div>
+			<div class="nvright"><a href="#" class="mui-icon mui-icon-bars" onclick="clicked('checkDB.html')"></a></div>
 		</header>
-		<div id="dcontent" class="dcontent">
-			<div class="button" onclick="clicked('barcode_scan.html',true,true);">扫码盘点</div>
+		<div id="dcontent" class="dcontent" style="text-align: left;">
+			<div class="button" onclick="clicked('barcode_scan.html',true,true);">扫描二维码/条码</div>
 			<div class="button" onclick="showPrompt();">手动输码</div>
 			<ul class="dlist">
-				<li class="ditem">条码：<span id="tiaoma"></span></li>
+				<!--<li class="ditem">条码：<span id="tiaoma"></span></li>
 				<li class="ditem">名称：<span id="name"></span></li>
 				<li class="ditem">单位：<span id="danwei"></span></li>
-				<li class="ditem">数量：<input type="number" id="shuliang" required ></li>
+				<li class="ditem">数量：<input type="number" id="shuliang" required ></li>-->
 			</ul>
-			<table style="width:100%;">
+			<table style="width:100%;display: none;" id="mybtn">
 				<tbody>
 					<tr>
 						<td style="width:25%"><div class="button button-select" onclick="setItemFun()">保存</div></td>
 						<td style="width:25%"><div class="button button-select" onclick="myclear()">取消</div></td>
-						<td style="width:40%"><div class="button button-select" onclick="clicked('checkDB.html')">查看历史</div></td>
 					</tr>
 				</tbody>
-			</table>
+			</table>	
+			<nav class="mui-bar mui-bar-tab">
+			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
+			    报表
+			</a>
+			<a id="type2" class="mui-tab-item" href="#" onclick="pandian()">
+			    盘点
+			</a>
+			<a class="mui-tab-item" href="#">
+			    商盟
+			 </a>
+			 <a class="mui-tab-item" href="#">
+			    快付
+			 </a>
+			 <a class="mui-tab-item" href="#picture">
+			    <span class="mui-icon mui-icon-more"></span>
+			 </a>
+		</nav>
+		
+		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell">
+					<a href="#">快付</a>
+				</li>-->
+				<li class="mui-table-view-cell">
+					<a href="#">会员</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">微信</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">供应商</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">云</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
 		</div>
 	</body>
 

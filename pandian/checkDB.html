@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售现场宝</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<style type="text/css">
+			body{
+				font-size: 12px;
+				line-height: 18px;
+			}
+			.dlist{
+				margin: 1.3em;
+			}
+			.ditem{
+				text-align: left;
+			}
+			.button {
+				background-color: #2AA2DF;
+				border: 1px solid #2AA2DF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div class="nvbt iback" onclick="back();"></div>
+			<div class="nvtt">零售宝</div>
+			<div class="nvright"><a href="#" style="font-size:12px ;">上传</a></div>
+		</header>
+		<div id="dcontent" class="dcontent" style="text-align: left;">
+			<ul class="dlist">
+				<li class="ditem">全部盘点</li>
+				<li class="ditem">ID：<span id="name">1001010010101</span></li>
+			</ul>
+			<div class="mui-card">				
+				
+			</div>
+		</div>
+		<script>
+			mui.init();
+		</script>
+		
+	</body>
+	<script type="text/javascript">
+			window.onload = function(){
+				setTimeout(getAllItem, 500);
+			}
+			function getAllItem(){
+				var itemLength = plus.storage.getLength();
+				var str = '<ul class="mui-table-view mui-table-view-chevron">';
+				var n = 0;
+				for ( var i=0; i < itemLength; i++ ) {
+					var key = plus.storage.key(i);
+					if(key.indexOf('key')!=-1){
+						n++;
+						var tmp = key.replace('key','');
+						var key = plus.storage.getItem(key);
+						str += '<li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">'+n+'&nbsp;&nbsp;'+plus.storage.getItem('name'+tmp)+'</a>';
+						str += '<ul class="mui-table-view mui-table-view-chevron">';
+						str += '<li class="mui-table-view-cell">条码：'+key+'</li>';
+						var value = plus.storage.getItem('name'+tmp);
+						str += '<li class="mui-table-view-cell">名称：'+value+'</li>';
+						value = plus.storage.getItem('danwei'+tmp);
+						str += '<li class="mui-table-view-cell">单位：'+value+'</li>';
+						value = plus.storage.getItem('shuliang'+tmp);
+						str += '<li class="mui-table-view-cell">数量：'+value+'</li>';
+						str += '</ul></li>';
+					}
+				};
+				str+="</ul>"
+				$(".mui-card").html(str);
+			}
+		</script>
+</html>
