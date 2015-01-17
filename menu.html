@@ -35,15 +35,13 @@
 				setTimeout(myload, 500);
 			}
 			function myload(){
-				$("#baobiao").hide();
-				$("#pandian").hide();
 				var menuType = plus.storage.getItem("menuType");
 				if(menuType == '1'){
-					$("#type1").addClass("mui-active");
 					baobiao();
 				}else if(menuType == '2'){
-					$("#type2").addClass("mui-active");
 					pandian();
+				}else if(menuType == '3'){
+					shangmeng();
 				}
 			}
 			function baobiao(){
@@ -97,20 +95,18 @@
 				plus.storage.setItem( "menuType", '2');
 			}
 			
-			function shangmen(){
+			function shangmeng(){
 				var str = '<table width="100%" class="jiu">';
 				str += '<tr><td>';
-				str += '<a href="#" onclick="clicked(\'pandian/index.html\')">';
+				str += '<a href="#" onclick="clicked(\'shangmeng/index.html\')">';
 	            str += '<span class="mui-icon mui-icon-location"></span>';
 	            str += '<div class="mui-media-body">顾客消费</div></a>';
 	            str += '</td><td>';
-	            str += '<a href="#" onclick="clicked(\'pandian/cuolou.html\')">';
+	            str += '<a href="#" onclick="clicked(\'submenu.html\')">';
 	            str += '<span class="mui-icon mui-icon-home"></span>';
 	            str += '<div class="mui-media-body">查询对账</div></a>';
 	            str += '</td><td width="33%">';
-	            str += '<a href="#" onclick="clicked(\'pandian/cuolou.html\')">';
-	            str += '<span class="mui-icon mui-icon-home"></span>';
-	            str += '<div class="mui-media-body">查询对账</div></a>';
+	            
 	            str += '</td></tr></table>';
 				$("#content").html(str);
 				plus.storage.setItem( "menuType", '3');
@@ -127,13 +123,13 @@
 			
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item" href="#" onclick="baobiao()">
+			<a id="type1" class="mui-tab-item" href="#" onclick="baobiao()">
 			    报表
 			</a>
-			<a class="mui-tab-item" href="#" onclick="pandian()">
+			<a id="type2" class="mui-tab-item" href="#" onclick="pandian()">
 			    盘点
 			</a>
-			<a class="mui-tab-item" href="#" onclick="shangmen()">
+			<a id="type3" class="mui-tab-item" href="#" onclick="shangmeng()">
 			    商盟
 			 </a>
 			 <a class="mui-tab-item" href="#">

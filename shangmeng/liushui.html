@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售现场宝</title>
+		<!--<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">-->
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script type="text/javascript">
+			/*function showStart() {
+				var dDate = new Date();
+				dDate.setFullYear(2014, 0, 1);
+				var minDate = new Date();
+				minDate.setFullYear(2010, 0, 1);
+				var maxDate = new Date();
+				maxDate.setFullYear(2016, 11, 31);
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					$("#startDate").html("开始日期：" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate())
+						//outLine("选择的日期：" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+				}, function(e) {
+					outSet("未选择日期：" + e.message);
+				}, {
+					title: "请选择开始日期",
+					date: dDate,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			}
+
+			function showEnd() {
+				var dDate = new Date();
+				dDate.setFullYear(2014, 0, 1);
+				var minDate = new Date();
+				minDate.setFullYear(2010, 0, 1);
+				var maxDate = new Date();
+				maxDate.setFullYear(2016, 11, 31);
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					$("#endDate").html("开始日期：" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate())
+						//outLine("选择的日期：" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+				}, function(e) {
+					outSet("未选择日期：" + e.message);
+				}, {
+					title: "请选择开始日期",
+					date: dDate,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			}
+
+			function showMsg() {
+				mui('.mui-popover').popover('toggle');
+			}*/
+		</script>
+		<script>
+			mui.init({
+				subpages: [{
+					url: 'pullrefresh.html', //下拉刷新内容页面地址
+					id: 'myid', //内容页面标志
+					styles: {
+						top: 98, //内容页面顶部位置,需根据实际页面布局计算，若使用标准mui导航，顶部默认为48px；
+					}
+				}]
+			});
+			
+		</script>
+		<!--<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />-->
+		<style type="text/css">
+			.button {
+				background-color: #2AA2DF;
+				border: 1px solid #2AA2DF;
+			}
+			#topPopover {
+				position: fixed;
+				top: 16px;
+				right: 6px;
+			}
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			p {
+				text-indent: 22px;
+			}
+			span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}
+			.mui-popover {
+				height: 150px;
+			}
+			.mui-content {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header>
+			<div class="nvbt iback" onclick="back();"></div>
+			<div class="nvtt">流水查询</div>
+			<div class="nvright">
+				<a id="aa" href="#topPopover" class="mui-icon mui-icon-bars"></a>
+			</div>
+		</header>-->
+		<!--<div id="dcontent" class="dcontent" style="text-align: left;">-->
+			<!--<div id="topPopover" class="mui-popover">
+				<div class="mui-popover-arrow"></div>
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li id="startDate" class="mui-table-view-cell" onclick="showStart()">
+								开始日期：
+							</li>
+							<li id="endDate" class="mui-table-view-cell" onclick="showEnd()">
+								结束日期：
+							</li>
+						</ul>
+						<div class="button button-select" onclick="showMsg()">查询</div>
+					</div>
+				</div>
+
+			</div>-->
+		<!--</div>-->
+
+	</body>
+
+</html>

@@ -51,6 +51,8 @@
 					}else if(type == 2){
 						//bijia();
 					}
+				}else if(menuType == '3'){
+					duizhang();
 				}
 			}
 			function baobiao(){
@@ -59,6 +61,10 @@
 			}
 			function pandian(){
 				plus.storage.setItem( "menuType", '2');
+				clicked('menu.html');
+			}
+			function shangmeng(){
+				plus.storage.setItem( "menuType", '3');
 				clicked('menu.html');
 			}
 			function jingli(){
@@ -97,6 +103,21 @@
 	            str += '</td></tr></table>';
 				$("#content").html(str);
 			}*/
+			function duizhang(){
+				var str = '<table width="100%" class="jiu">';
+				str += '<tr><td>';
+				str += '<a href="#" onclick="clicked(\'shangmeng/liushui.html\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">流水查询</div></a>';
+	            str += '</td><td width="33%">';
+	            str += '<a href="#" onclick="clicked(\'baobiao/xiaoshou.html\')">';
+	            str += '<span class="mui-icon mui-icon-location"></span>';
+	            str += '<div class="mui-media-body">账期对账</div></a>';
+	            str += '</td><td width="33%">';
+	            str += '</td></tr></table>';
+				$("#content").html(str);
+			}
+			
 		</script>
 	</head>
 
@@ -115,7 +136,7 @@
 			<a id="type2" class="mui-tab-item" href="#" onclick="pandian()">
 			    盘点
 			</a>
-			<a class="mui-tab-item" href="#">
+			<a class="mui-tab-item" href="#" onclick="shangmeng()">
 			    商盟
 			 </a>
 			 <a class="mui-tab-item" href="#">

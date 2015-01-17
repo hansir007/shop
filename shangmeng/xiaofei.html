@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>商业零售现场宝</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript">
+			function myclear(){
+				$("#name").val("");
+				$("#tel").val("");
+				$("#gonghao").val("");
+				back();
+			};
+						
+			function setItemFun() {
+				plus.storage.setItem( "regname", $("#name").val() );
+				plus.storage.setItem( "regtel", $("#regtel").val() );
+				plus.storage.setItem( "gonghao", $("#gonghao").val() );
+				showToast("保存成功");
+				myclear();
+			}
+			
+			function showToast(msg){
+				if('Android'!=plus.os.name){
+					plus.nativeUI.alert("此平台不支持toast！");
+				}else{
+					plus.nativeUI.toast(msg);
+				}
+			}
+			
+		</script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<style type="text/css">
+			.ditem{
+				text-align: left;
+			}
+			.button {
+				background-color: #2AA2DF;
+				border: 1px solid #2AA2DF;
+			}
+			.regInp {
+				border: none;
+				width: 60%;
+				height: 20px;
+				-webkit-user-select:text;
+				text-align:left;
+				padding:0 1em;
+				border: 0px;
+				border-radius: 0;
+				font-size:16px;
+				outline:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div class="nvbt iback" onclick="back();"></div>
+			<div class="nvtt">顾客消费</div>
+			<!--<div class="nvbt idoc" onclick="openDoc('NativeUI Document','/doc/nativeUI.html')"></div>-->
+		</header>
+		<div id="dcontent" class="dcontent">
+			<ul class="dlist">
+				<li class="ditem">金额：<input type="text" id="name" class="regInp" required ></li>
+				<li class="ditem">卡号：<input type="number" id="tel" class="regInp" required ></li>
+				<li class="ditem">密码：<input type="number" id="gonghao" class="regInp" required ></li>
+			</ul>
+			<table style="width:100%;">
+				<tbody>
+					<tr>
+						<td style="width:25%"><div class="button button-select" onclick="setItemFun()">消费</div></td>
+						<td style="width:25%"><div class="button button-select" onclick="myclear()">取消</div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>
