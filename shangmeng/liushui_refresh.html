@@ -14,7 +14,7 @@
 		<style>
 			html,
 			body {
-				background-color: #FFFFFF;
+				background-color: #efeff4;
 			}
 		</style>
 	</head>
@@ -25,19 +25,22 @@
 			<div class="mui-scroll">
 				<!--数据列表-->
 				<ul class="mui-table-view mui-table-view-chevron">
-
+					
 				</ul>
 			</div>
 		</div>
 		<script>
 			mui.init({
+				swipeBack: false,
 				pullRefresh: {
-					container: "#pullrefresh", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					container: '#pullrefresh',
 					down: {
-						contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-						contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
-						contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
-						callback: pulldownRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						contentnomore:'没有更多数据了',
+						callback: pullupRefresh
 					}
 				}
 			});
@@ -45,7 +48,18 @@
 			 * 下拉刷新具体业务实现
 			 */
 			function pulldownRefresh() {
-				 mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
 			}
 			var count = 0;
 			/**
@@ -64,9 +78,18 @@
 					}
 				}, 1500);
 			}
-			mui.ready(function() {
-				mui('#pullrefresh').pullRefresh().pullupLoading();
-			});
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1000);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
 		</script>
 	</body>
 
