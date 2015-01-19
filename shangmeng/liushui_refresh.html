@@ -53,8 +53,17 @@
 					var cells = document.body.querySelectorAll('.mui-table-view-cell');
 					for (var i = cells.length, len = i + 3; i < len; i++) {
 						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						/*li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';*/
+						li.className = 'mui-table-view-cell mui-collapse';
+						var str = '<a class="mui-navigate-right" href="#">'+(i + 1)+'&nbsp;&nbsp;</a>';
+						str += '<ul class="mui-table-view mui-table-view-chevron">';
+						str += '<li class="mui-table-view-cell">条码：</li>';
+						str += '<li class="mui-table-view-cell">名称：</li>';
+						str += '<li class="mui-table-view-cell">单位：</li>';
+						str += '<li class="mui-table-view-cell">数量：</li>';
+						str += '</ul>';
+						li.innerHTML = str;
 						//下拉刷新，新纪录插到最前面；
 						table.insertBefore(li, table.firstChild);
 					}
@@ -70,10 +79,19 @@
 					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
 					var table = document.body.querySelector('.mui-table-view');
 					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for (var i = cells.length, len = i + 20; i < len; i++) {
+					for (var i = cells.length, len = i + 10; i < len; i++) {
 						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						/*li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';*/
+						li.className = 'mui-table-view-cell mui-collapse';
+						var str = '<a class="mui-navigate-right" href="#">'+(i + 1)+'&nbsp;&nbsp;</a>';
+						str += '<ul class="mui-table-view mui-table-view-chevron">';
+						str += '<li class="mui-table-view-cell">条码：</li>';
+						str += '<li class="mui-table-view-cell">名称：</li>';
+						str += '<li class="mui-table-view-cell">单位：</li>';
+						str += '<li class="mui-table-view-cell">数量：</li>';
+						str += '</ul>';
+						li.innerHTML = str;
 						table.appendChild(li);
 					}
 				}, 1500);
